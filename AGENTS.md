@@ -202,8 +202,8 @@ Track unresolved decisions here so agents do not silently pick one:
   whether clones need them (especially if analytics are enabled).
 - **Translations.** Sinhala/Tamil content will be supplied later. Decide whether
   item names come from the Sheet, the content collections, or both.
-- **Screenshot for express.** `public/demos/cafe.webp` must be captured for
-  `express.zuvo.lk` once the demo is live. See `docs/EXPRESS-HANDOFF.md`.
+- **Screenshot for express.** Done — `public/demos/cafe.webp` (1280×960) captured
+  and the café demo listed live on express (see `docs/DECISIONS.md` D-C21).
 - **Native-speaker review** of Sinhala/Tamil strings before pitching, once enabled.
 
 When you resolve one of these, move the decision into `docs/DECISIONS.md` and leave

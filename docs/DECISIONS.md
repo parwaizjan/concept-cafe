@@ -269,6 +269,22 @@ from Restaurant) and D-030 (cafés are discovery-first) for the business positio
 
 ---
 
+## D-C21 — Demo deployed and listed on express
+
+- **Date:** 2026-10-06
+- **Decision:** `concept-cafe` is deployed to **https://demo-cafe.zuvo.lk** via
+  Cloudflare Workers Builds and the café demo is **live** on express.zuvo.lk
+  (`demos.ts` café entry flipped to `live`, `public/demos/cafe.webp` at 1280×960
+  added, and `docs/demos.md` / `product.md` / `strategy.md` / `roadmap.md` updated;
+  express commit `134787c`). A malformed SVG brand mark (unescaped `&` in the
+  `aria-label`) was fixed and redeployed (café repo commit `c749098`).
+- **Rationale:** Records the handoff as applied and closes the "screenshot for
+  express" open question. The express café category page (already discovery-first
+  per D-030) now surfaces the live demo.
+- **Alternatives:** none — this is completion of the planned handoff.
+
+---
+
 ## Open questions
 
 Copied from `AGENTS.md` §8 and tracked there:

@@ -1,5 +1,9 @@
 # Express hand-off — listing `demo-cafe.zuvo.lk`
 
+**Status: applied on 2026-10-06** (express commit `134787c`); the café demo is live
+at `https://demo-cafe.zuvo.lk` and `/websites/cafe/` shows the live demo and
+screenshot. Kept here as the record of what was changed.
+
 This document is for the agent/developer who maintains
 `~/Projects/zuvo-studio-express` (**express.zuvo.lk**). It lists the exact changes
 needed to list the new café demo. The `concept-cafe` repo must **not** edit the
