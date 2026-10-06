@@ -13,50 +13,52 @@ const tagline = site.tagline[lang] ?? site.tagline.en;
 const directions = buildDirectionsUrl();
 ---
 
-<section class="relative overflow-hidden bg-surface-alt">
-  <div
-    class="container-page grid items-center gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-20"
-  >
-    <div>
-      <span class="eyebrow">{t("hero.eyebrow")}</span>
-      <h1 class="mt-4 font-heading text-5xl leading-[1.02] sm:text-7xl">
-        {site.name}
-      </h1>
-      <p class="mt-4 max-w-md text-lg text-text-muted sm:text-xl">{tagline}</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#menu" class="btn btn-primary">{t("hero.cta")}</a>
-        <a
-          href={directions}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-outline"
-        >
-          {t("hero.directions")}
-        </a>
-      </div>
-      <p class="mt-6 text-sm text-text-muted">
-        {site.address[lang] ?? site.address.en}
-      </p>
-    </div>
+<section
+  class="relative isolate flex min-h-[68vh] items-end overflow-hidden sm:min-h-[82vh] sm:items-center"
+>
+  <img
+    src={site.heroImage}
+    alt={t("hero.imageAlt")}
+    width="2400"
+    height="1400"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+  />
 
-    <div class="overflow-hidden rounded-lg border border-border">
-      <picture>
-        <source
-          media="(max-width: 639px)"
-          srcset={site.heroImageMobile}
-          width="1200"
-          height="1600"
-        />
-        <img
-          src={site.heroImage}
-          alt={t("hero.imageAlt")}
-          width="1200"
-          height="900"
-          loading="eager"
-          decoding="async"
-          class="aspect-[4/3] w-full object-cover sm:aspect-[3/2]"
-        />
-      </picture>
+  <!-- Legibility scrims: vertical on mobile, horizontal on desktop, so the
+       dark espresso text sits on calm cream while the photo stays vivid. -->
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-t from-bg via-bg/80 to-bg/5 sm:hidden"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute inset-0 -z-10 hidden bg-gradient-to-r from-bg/90 via-bg/45 to-transparent sm:block"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-page py-12 sm:py-16">
+    <span class="eyebrow">{t("hero.eyebrow")}</span>
+    <h1 class="mt-4 max-w-3xl font-heading text-5xl leading-[1.0] sm:text-7xl">
+      {site.name}
+    </h1>
+    <p class="mt-4 max-w-lg text-lg text-text-muted sm:text-xl">{tagline}</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#menu" class="btn btn-primary">{t("hero.cta")}</a>
+      <a
+        href={directions}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-outline"
+      >
+        {t("hero.directions")}
+      </a>
     </div>
+    <p class="mt-6 text-sm text-text-muted">
+      {site.address[lang] ?? site.address.en}
+    </p>
   </div>
 </section>
