@@ -2,7 +2,7 @@
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 64 64"
   role="img"
-  aria-label="Fern & Bean"
+  aria-label="Fern &amp; Bean"
 >
   <rect width="64" height="64" rx="15" fill="#4a342a" />
   <ellipse cx="31" cy="35" rx="14" ry="18" fill="#fbf7ef" />
