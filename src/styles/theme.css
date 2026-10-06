@@ -1,0 +1,92 @@
+/*
+ * Design tokens.
+ *
+ * `@theme inline` maps Tailwind utilities onto the runtime CSS variables below, so
+ * a clone rebrands by editing the variable values (and preset overrides) only.
+ * See docs/DESIGN-BRIEF.md.
+ */
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface-alt: var(--c-surface-alt);
+  --color-text: var(--c-text);
+  --color-text-muted: var(--c-text-muted);
+  --color-primary: var(--c-primary);
+  --color-primary-strong: var(--c-primary-strong);
+  --color-on-primary: var(--c-on-primary);
+  --color-accent: var(--c-accent);
+  --color-border: var(--c-border);
+  --color-success: var(--c-success);
+  --color-danger: var(--c-danger);
+  --color-focus: var(--c-focus);
+
+  --font-heading: var(--font-heading-family);
+  --font-body: var(--font-body-family);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+
+  --shadow-soft:
+    0 1px 2px rgb(43 38 32 / 0.06), 0 10px 30px rgb(43 38 32 / 0.08);
+}
+
+/* Default preset: Fern & Bean (warm cream + espresso + matcha). */
+:root {
+  color-scheme: light;
+  --c-bg: #fbf7ef;
+  --c-surface: #ffffff;
+  --c-surface-alt: #f2eadd;
+  --c-text: #2b2620;
+  --c-text-muted: #766a5b;
+  --c-primary: #4a342a;
+  --c-primary-strong: #38261d;
+  --c-on-primary: #fbf7ef;
+  --c-accent: #56703a;
+  --c-border: #e5dccb;
+  --c-success: #3f6b41;
+  --c-danger: #b2463a;
+  --c-focus: #1d4ed8;
+
+  --font-heading-family:
+    "Newsreader", "Noto Serif Sinhala", "Noto Serif Tamil", Georgia, serif;
+  --font-body-family:
+    "Figtree", "Noto Sans Sinhala", "Noto Sans Tamil", system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+}
+
+/* Alternate presets (pitch variety). Apply with <html data-theme="...">. */
+[data-theme="roast"] {
+  color-scheme: dark;
+  --c-bg: #1c1713;
+  --c-surface: #26201b;
+  --c-surface-alt: #2f2721;
+  --c-text: #f4ede3;
+  --c-text-muted: #bcae9d;
+  --c-primary: #d9a566;
+  --c-primary-strong: #c08f50;
+  --c-on-primary: #1c1713;
+  --c-accent: #8fae63;
+  --c-border: #3a3129;
+  --c-success: #6fae7a;
+  --c-danger: #d97f6f;
+  --c-focus: #f2c477;
+}
+
+[data-theme="mint"] {
+  color-scheme: light;
+  --c-bg: #f4f8f4;
+  --c-surface: #ffffff;
+  --c-surface-alt: #e7f0e8;
+  --c-text: #1f2a24;
+  --c-text-muted: #5f7168;
+  --c-primary: #2f5d4a;
+  --c-primary-strong: #244a3a;
+  --c-on-primary: #ffffff;
+  --c-accent: #c2743f;
+  --c-border: #d3e2d6;
+  --c-success: #3f7d4e;
+  --c-danger: #b2463a;
+  --c-focus: #1d4ed8;
+}

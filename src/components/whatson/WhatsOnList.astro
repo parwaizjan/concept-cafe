@@ -1,0 +1,39 @@
+---
+import type { Locale } from "../../data/site";
+import { whatsOn } from "../../data/whats-on";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="whats-on" class="container-page py-12">
+  <header class="mb-6">
+    <h2 class="font-heading text-3xl">{t("whatsOn.title")}</h2>
+    <p class="mt-2 text-text-muted">{t("whatsOn.subtitle")}</p>
+  </header>
+
+  <ul class="grid gap-4 sm:grid-cols-2">
+    {
+      whatsOn.map((item) => (
+        <li class="card p-5">
+          {item.when && (
+            <p class="eyebrow">{item.when[lang] ?? item.when.en}</p>
+          )}
+          <h3 class="mt-2 font-heading text-xl">
+            {item.title[lang] ?? item.title.en}
+          </h3>
+          {item.detail && (
+            <p class="mt-1 text-sm text-text-muted">
+              {item.detail[lang] ?? item.detail.en}
+            </p>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>

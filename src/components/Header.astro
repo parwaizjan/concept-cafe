@@ -1,0 +1,77 @@
+---
+import { site, type Locale } from "../data/site";
+import { useTranslations, localizePath } from "../i18n/utils";
+import { buildDirectionsUrl } from "../lib/directions";
+import LangSwitcher from "./LangSwitcher.astro";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const home = localizePath("/", lang);
+const links = [
+  { key: "nav.menu", href: "#menu" },
+  { key: "nav.gallery", href: "#gallery" },
+  { key: "nav.whatsOn", href: "#whats-on" },
+  { key: "nav.visit", href: "#visit" },
+] as const;
+
+// Anchor to the localized home page so links also work from /404.
+const anchor = (hash: string) => `${home}${hash}`;
+
+const linkClass =
+  "inline-flex min-h-9 items-center whitespace-nowrap rounded-full px-3 text-sm font-medium text-text-muted hover:bg-surface-alt hover:text-text";
+
+const directions = buildDirectionsUrl();
+---
+
+<header class="sticky top-0 z-40 border-b border-border bg-bg/85 backdrop-blur">
+  <div class="container-page flex items-center justify-between gap-3 py-2.5">
+    <a href={home} class="flex items-center gap-2" aria-label={site.name}>
+      <img src={site.logo} alt="" width="36" height="36" />
+      <span class="whitespace-nowrap font-heading text-lg sm:text-xl"
+        >{site.name}</span
+      >
+    </a>
+
+    <nav class="hidden items-center gap-0.5 md:flex" aria-label={t("nav.menu")}>
+      {
+        links.map((link) => (
+          <a href={anchor(link.href)} class={linkClass}>
+            {t(link.key)}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <LangSwitcher lang={lang} />
+      <a
+        href={directions}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary !min-h-10 whitespace-nowrap !px-3 text-sm sm:!px-4"
+      >
+        <span class="sm:hidden">{t("common.directionsShort")}</span>
+        <span class="hidden sm:inline">{t("common.getDirections")}</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="container-page md:hidden" aria-label={t("nav.menu")}>
+    <ul class="no-scrollbar flex gap-1 overflow-x-auto py-1.5">
+      {
+        links.map((link) => (
+          <li>
+            <a href={anchor(link.href)} class={linkClass}>
+              {t(link.key)}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

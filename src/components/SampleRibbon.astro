@@ -1,0 +1,30 @@
+---
+import { site, type Locale } from "../data/site";
+import { buildWhatsAppUrl } from "../lib/whatsapp";
+import { buildContactMessage } from "../lib/contact";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// A generic enquiry so the demo ribbon always has a working WhatsApp link.
+const href = buildWhatsAppUrl(buildContactMessage({ topic: "general" }, t));
+---
+
+{
+  site.showDemoRibbon && (
+    <div class="demo-ribbon">
+      <div class="container-page">
+        {t("ribbon.text")}
+        {" · "}
+        <a href={href} target="_blank" rel="noopener noreferrer">
+          {t("common.messageUs")}
+        </a>
+      </div>
+    </div>
+  )
+}

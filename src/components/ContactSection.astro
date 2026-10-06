@@ -1,0 +1,89 @@
+---
+import { site, type Locale } from "../data/site";
+import { buildWhatsAppUrl } from "../lib/whatsapp";
+import { buildContactMessage } from "../lib/contact";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const defaultHref = buildWhatsAppUrl(
+  buildContactMessage({ topic: "general" }, t),
+);
+---
+
+<section id="contact" class="border-t border-border bg-surface py-14">
+  <div class="container-page max-w-2xl">
+    <h2 class="font-heading text-3xl">{t("contact.title")}</h2>
+    <p class="mt-2 text-text-muted">{t("contact.subtitle")}</p>
+
+    <form class="mt-6 space-y-4" data-contact-form>
+      <fieldset>
+        <legend class="text-sm font-medium">{t("contact.whatAbout")}</legend>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {
+            site.contact.topics.map((topic, index) => (
+              <label class="cursor-pointer">
+                <input
+                  type="radio"
+                  name="topic"
+                  value={topic}
+                  checked={index === 0}
+                  class="peer sr-only"
+                />
+                <span class="inline-flex min-h-9 items-center rounded-full border border-border px-3 text-sm text-text-muted transition-colors peer-checked:border-primary peer-checked:bg-primary peer-checked:text-on-primary hover:border-primary">
+                  {t(`contact.topic.${topic}`)}
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <div>
+        <label for="contact-name" class="text-sm font-medium">
+          {t("msg.name")}
+        </label>
+        <input
+          id="contact-name"
+          type="text"
+          autocomplete="name"
+          data-contact-name
+          class="input mt-1"
+        />
+      </div>
+
+      <div>
+        <label for="contact-note" class="text-sm font-medium">
+          {t("contact.note")}
+        </label>
+        <textarea
+          id="contact-note"
+          rows="3"
+          data-contact-note
+          placeholder={t("contact.notePlaceholder")}
+          class="input mt-1"></textarea>
+      </div>
+
+      <a
+        data-contact-send
+        href={defaultHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary w-full sm:w-auto"
+      >
+        {t("contact.send")}
+      </a>
+      <p class="text-xs text-text-muted">{t("footer.note")}</p>
+    </form>
+
+    <div class="mt-8 rounded-lg border border-border bg-bg p-4">
+      <h3 class="font-heading text-lg">{t("addOns.title")}</h3>
+      <p class="mt-1 text-sm text-text-muted">{t("addOns.body")}</p>
+    </div>
+  </div>
+</section>

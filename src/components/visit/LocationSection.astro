@@ -1,0 +1,23 @@
+---
+import type { Locale } from "../../data/site";
+import { useTranslations } from "../../i18n/utils";
+import ContactLinks from "./ContactLinks.astro";
+import OpeningHours from "./OpeningHours.astro";
+import MapEmbed from "./MapEmbed.astro";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="visit" class="container-page py-12">
+  <h2 class="mb-6 font-heading text-3xl">{t("visit.title")}</h2>
+  <div class="grid gap-8 md:grid-cols-3">
+    <ContactLinks lang={lang} />
+    <OpeningHours lang={lang} />
+    <MapEmbed lang={lang} />
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+import type { Locale } from "../../data/site";
+import type { MenuItem as MenuEntry } from "../../lib/menu";
+import { formatPrice } from "../../lib/format";
+import { useTranslations } from "../../i18n/utils";
+import DietaryBadges from "./DietaryBadges.astro";
+
+interface Props {
+  item: MenuEntry;
+  lang: Locale;
+  /** Hide the "This week" badge (e.g. inside the Specials section). */
+  showSpecialBadge?: boolean;
+}
+
+const { item, lang, showSpecialBadge = true } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<li
+  data-item
+  data-id={item.id}
+  data-price={item.price}
+  data-available={String(item.available)}
+  data-special={String(item.special)}
+  class:list={["py-4", !item.available && "opacity-60"]}
+>
+  <div class="price-leader">
+    <span class="font-medium">{item.name}</span>
+    <span class="leader" aria-hidden="true"></span>
+    <span data-price-display class="font-semibold tabular-nums">
+      {formatPrice(item.price)}
+    </span>
+  </div>
+
+  {
+    item.description && (
+      <p class="mt-1 text-sm text-text-muted">{item.description}</p>
+    )
+  }
+
+  <div class="mt-2 flex flex-wrap items-center gap-3">
+    <DietaryBadges veg={item.veg} lang={lang} />
+    {
+      showSpecialBadge && (
+        <span
+          data-special-badge
+          hidden={!item.special}
+          class="badge bg-accent text-white"
+        >
+          {t("menu.special")}
+        </span>
+      )
+    }
+    <span
+      data-unavailable
+      hidden={item.available}
+      class="text-xs font-semibold text-danger"
+    >
+      {t("menu.soldOut")}
+    </span>
+  </div>
+
+  {item.note && <p class="mt-1 text-xs font-medium text-accent">{item.note}</p>}
+</li>

@@ -1,0 +1,62 @@
+---
+import { site, type Locale } from "../../data/site";
+import { useTranslations } from "../../i18n/utils";
+import { buildDirectionsUrl } from "../../lib/directions";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tagline = site.tagline[lang] ?? site.tagline.en;
+const directions = buildDirectionsUrl();
+---
+
+<section class="relative overflow-hidden bg-surface-alt">
+  <div
+    class="container-page grid items-center gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-20"
+  >
+    <div>
+      <span class="eyebrow">{t("hero.eyebrow")}</span>
+      <h1 class="mt-4 font-heading text-5xl leading-[1.02] sm:text-7xl">
+        {site.name}
+      </h1>
+      <p class="mt-4 max-w-md text-lg text-text-muted sm:text-xl">{tagline}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#menu" class="btn btn-primary">{t("hero.cta")}</a>
+        <a
+          href={directions}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-outline"
+        >
+          {t("hero.directions")}
+        </a>
+      </div>
+      <p class="mt-6 text-sm text-text-muted">
+        {site.address[lang] ?? site.address.en}
+      </p>
+    </div>
+
+    <div class="overflow-hidden rounded-lg border border-border">
+      <picture>
+        <source
+          media="(max-width: 639px)"
+          srcset={site.heroImageMobile}
+          width="1200"
+          height="1600"
+        />
+        <img
+          src={site.heroImage}
+          alt={t("hero.imageAlt")}
+          width="1200"
+          height="900"
+          loading="eager"
+          decoding="async"
+          class="aspect-[4/3] w-full object-cover sm:aspect-[3/2]"
+        />
+      </picture>
+    </div>
+  </div>
+</section>

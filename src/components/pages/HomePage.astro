@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CafeHero from "../hero/CafeHero.astro";
+import SignatureItems from "../menu/SignatureItems.astro";
+import SpecialsStrip from "../menu/SpecialsStrip.astro";
+import MenuList from "../menu/MenuList.astro";
+import GalleryGrid from "../gallery/GalleryGrid.astro";
+import WhatsOnList from "../whatson/WhatsOnList.astro";
+import LocationSection from "../visit/LocationSection.astro";
+import Reviews from "../reviews/Reviews.astro";
+import ContactSection from "../ContactSection.astro";
+import type { Locale } from "../../data/site";
+import { getCategories, getItems } from "../../lib/menu";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const [items, categories] = await Promise.all([
+  getItems(lang),
+  getCategories(lang),
+]);
+---
+
+<BaseLayout lang={lang} path="/">
+  <CafeHero lang={lang} />
+  <SignatureItems items={items} lang={lang} />
+  <SpecialsStrip items={items} lang={lang} />
+  <MenuList categories={categories} items={items} lang={lang} />
+  <GalleryGrid lang={lang} />
+  <WhatsOnList lang={lang} />
+  <LocationSection lang={lang} />
+  <Reviews lang={lang} />
+  <ContactSection lang={lang} />
+</BaseLayout>

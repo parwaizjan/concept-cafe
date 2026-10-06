@@ -1,0 +1,110 @@
+---
+import { site, type Locale } from "../data/site";
+import { useTranslations, localizePath } from "../i18n/utils";
+import { buildWhatsAppUrl } from "../lib/whatsapp";
+import { buildContactMessage } from "../lib/contact";
+import { buildDirectionsUrl } from "../lib/directions";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const home = localizePath("/", lang);
+const chatUrl = buildWhatsAppUrl(buildContactMessage({ topic: "general" }, t));
+const directions = buildDirectionsUrl();
+const socials = Object.entries(site.socials).filter(([, url]) => url);
+---
+
+<footer class="mt-16 border-t border-border bg-surface-alt">
+  <div class="container-page grid gap-8 py-12 sm:grid-cols-3">
+    <div>
+      <div class="flex items-center gap-2">
+        <img src={site.logo} alt="" width="32" height="32" />
+        <span class="font-heading text-lg">{site.name}</span>
+      </div>
+      <p class="mt-2 max-w-xs text-sm text-text-muted">
+        {site.tagline[lang] ?? site.tagline.en}
+      </p>
+      {
+        socials.length > 0 && (
+          <ul class="mt-4 flex gap-3 text-sm">
+            {socials.map(([name, url]) => (
+              <li>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline"
+                >
+                  {name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <nav aria-label="Footer">
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href={`${home}#menu`} class="hover:underline">{t("nav.menu")}</a>
+        </li>
+        <li>
+          <a href={`${home}#gallery`} class="hover:underline"
+            >{t("nav.gallery")}</a
+          >
+        </li>
+        <li>
+          <a href={`${home}#whats-on`} class="hover:underline"
+            >{t("nav.whatsOn")}</a
+          >
+        </li>
+        <li>
+          <a href={`${home}#reviews`} class="hover:underline"
+            >{t("testimonials.title")}</a
+          >
+        </li>
+        <li>
+          <a href={`${home}#visit`} class="hover:underline">{t("nav.visit")}</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="space-y-3 text-sm text-text-muted">
+      <p>{t("footer.note")}</p>
+      <address class="not-italic">
+        {site.address[lang] ?? site.address.en}
+      </address>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={chatUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-primary underline"
+        >
+          {t("common.messageUs")}
+        </a>
+        <a
+          href={directions}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline"
+        >
+          {t("common.getDirections")}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-border py-4">
+    <p class="container-page text-xs text-text-muted">
+      © {year}
+      {site.name}. {t("footer.rights")}
+    </p>
+  </div>
+</footer>
