@@ -24,18 +24,18 @@ const directions = buildDirectionsUrl();
     loading="eager"
     fetchpriority="high"
     decoding="async"
-    class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_70%]"
   />
 
-  <!-- Legibility scrims: vertical on mobile, horizontal on desktop, so the
-       dark espresso text sits on calm cream while the photo stays vivid. -->
+  <!-- Legibility scrims, confined to the text area so the photo stays vivid:
+       a bottom-to-top veil on mobile, a left-edge veil on desktop. -->
   <div
-    class="absolute inset-0 -z-10 bg-gradient-to-t from-bg via-bg/80 to-bg/5 sm:hidden"
+    class="absolute inset-0 -z-10 bg-gradient-to-t from-bg from-8% via-bg/70 via-52% to-transparent sm:hidden"
     aria-hidden="true"
   >
   </div>
   <div
-    class="absolute inset-0 -z-10 hidden bg-gradient-to-r from-bg/90 via-bg/45 to-transparent sm:block"
+    class="absolute inset-0 -z-10 hidden bg-gradient-to-r from-bg from-0% via-bg/55 via-30% to-transparent to-56% sm:block"
     aria-hidden="true"
   >
   </div>
