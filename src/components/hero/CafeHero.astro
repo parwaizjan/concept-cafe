@@ -14,8 +14,11 @@ const directions = buildDirectionsUrl();
 ---
 
 <section
-  class="relative isolate flex min-h-[68vh] items-end overflow-hidden sm:min-h-[82vh] sm:items-center"
+  class="relative isolate overflow-hidden sm:flex sm:min-h-[82vh] sm:items-center"
 >
+  <!-- Mobile: image sits in flow with the copy beneath it (no overlay, so the
+       cup stays fully visible and the text is crisp). Desktop (sm+): full-bleed
+       image behind the copy. -->
   <picture>
     <source media="(max-width: 639px)" srcset={site.heroImageMobile} />
     <img
@@ -26,24 +29,18 @@ const directions = buildDirectionsUrl();
       loading="eager"
       fetchpriority="high"
       decoding="async"
-      class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+      class="block h-[52vh] w-full object-cover object-center sm:absolute sm:inset-0 sm:-z-20 sm:h-full"
     />
   </picture>
 
-  <!-- Legibility scrims, confined to the text area so the photo stays vivid:
-       a bottom-to-top veil on mobile, a left-edge veil on desktop. -->
-  <div
-    class="absolute inset-0 -z-10 bg-gradient-to-t from-bg from-8% via-bg/70 via-52% to-transparent sm:hidden"
-    aria-hidden="true"
-  >
-  </div>
+  <!-- Desktop legibility scrim, confined to the copy area so the photo stays vivid. -->
   <div
     class="absolute inset-0 -z-10 hidden bg-gradient-to-r from-bg from-0% via-bg/55 via-30% to-transparent to-56% sm:block"
     aria-hidden="true"
   >
   </div>
 
-  <div class="container-page py-12 sm:py-16">
+  <div class="container-page py-8 sm:py-16">
     <span class="eyebrow">{t("hero.eyebrow")}</span>
     <h1 class="mt-4 max-w-3xl font-heading text-5xl leading-[1.0] sm:text-7xl">
       {site.name}
