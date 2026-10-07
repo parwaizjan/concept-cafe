@@ -16,16 +16,19 @@ const directions = buildDirectionsUrl();
 <section
   class="relative isolate flex min-h-[68vh] items-end overflow-hidden sm:min-h-[82vh] sm:items-center"
 >
-  <img
-    src={site.heroImage}
-    alt={t("hero.imageAlt")}
-    width="2400"
-    height="1400"
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-    class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-  />
+  <picture>
+    <source media="(max-width: 639px)" srcset={site.heroImageMobile} />
+    <img
+      src={site.heroImage}
+      alt={t("hero.imageAlt")}
+      width="2400"
+      height="1400"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+    />
+  </picture>
 
   <!-- Legibility scrims, confined to the text area so the photo stays vivid:
        a bottom-to-top veil on mobile, a left-edge veil on desktop. -->
