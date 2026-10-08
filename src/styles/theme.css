@@ -20,6 +20,7 @@
   --color-success: var(--c-success);
   --color-danger: var(--c-danger);
   --color-focus: var(--c-focus);
+  --color-whatsapp: var(--c-whatsapp);
 
   --font-heading: var(--font-heading-family);
   --font-body: var(--font-body-family);
@@ -48,6 +49,7 @@
   --c-success: #3f6b41;
   --c-danger: #b2463a;
   --c-focus: #1d4ed8;
+  --c-whatsapp: #25d366;
 
   --font-heading-family:
     "Newsreader", "Noto Serif Sinhala", "Noto Serif Tamil", Georgia, serif;
