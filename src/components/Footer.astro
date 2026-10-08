@@ -4,6 +4,7 @@ import { useTranslations, localizePath } from "../i18n/utils";
 import { buildWhatsAppUrl } from "../lib/whatsapp";
 import { buildContactMessage } from "../lib/contact";
 import { buildDirectionsUrl } from "../lib/directions";
+import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
 
 interface Props {
   lang: Locale;
@@ -85,8 +86,9 @@ const socials = Object.entries(site.socials).filter(([, url]) => url);
           href={chatUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="font-medium text-primary underline"
+          class="inline-flex items-center gap-1.5 font-medium text-primary underline"
         >
+          <WhatsAppIcon class="text-whatsapp" size={14} />
           {t("common.messageUs")}
         </a>
         <a

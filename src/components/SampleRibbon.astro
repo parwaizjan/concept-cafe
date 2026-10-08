@@ -3,6 +3,7 @@ import { site, type Locale } from "../data/site";
 import { buildWhatsAppUrl } from "../lib/whatsapp";
 import { buildContactMessage } from "../lib/contact";
 import { useTranslations } from "../i18n/utils";
+import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
 
 interface Props {
   lang: Locale;
@@ -21,7 +22,13 @@ const href = buildWhatsAppUrl(buildContactMessage({ topic: "general" }, t));
       <div class="container-page">
         {t("ribbon.text")}
         {" · "}
-        <a href={href} target="_blank" rel="noopener noreferrer">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1"
+        >
+          <WhatsAppIcon size={13} />
           {t("common.messageUs")}
         </a>
       </div>
