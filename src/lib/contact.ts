@@ -1,4 +1,4 @@
-import type { ContactTopic } from "../data/site";
+import { site, type ContactTopic } from "../data/site";
 import type { UiKey } from "../i18n/ui";
 
 /**
@@ -11,12 +11,19 @@ export type ContactDetails = {
   notes?: string;
 };
 
-/** Assemble the WhatsApp enquiry text. `t` is the locale-bound translator. */
+/**
+ * Assemble the WhatsApp enquiry text. `t` is the locale-bound translator.
+ *
+ * Every visitor-facing message is prefixed with the demo tag (`site.demoTag`),
+ * applied here in one place so all CTAs — the contact form, the "Message us"
+ * links and any future booking/ordering — inherit it. See
+ * `docs/DISCOVERY-AND-CONTACT.md`.
+ */
 export function buildContactMessage(
   details: ContactDetails,
   t: (key: UiKey) => string,
 ): string {
-  const lines: string[] = [t("msg.intro"), ""];
+  const lines: string[] = [`${site.demoTag} ${t("msg.intro")}`, ""];
 
   if (details.topic) {
     lines.push(
@@ -32,4 +39,12 @@ export function buildContactMessage(
 
   lines.push("", t("msg.footer"));
   return lines.join("\n");
+}
+
+/**
+ * Website enquiry for the demo ribbon: an owner asking the studio for a site like
+ * this demo. Deliberately NOT tagged — it comes from an owner, not a site visitor.
+ */
+export function buildWebsiteEnquiry(t: (key: UiKey) => string): string {
+  return t("ribbon.enquiry").replace("{name}", site.name);
 }

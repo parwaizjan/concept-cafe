@@ -119,6 +119,17 @@ Thank you!
 - Default (no topic): "Hi Fern & Bean! I'd like to ask a question." + name/notes.
 - Never include an order or a cart — this is an enquiry, not an order.
 
+### Demo tag and the ribbon enquiry
+
+- **Every visitor-facing message is prefixed with `site.demoTag`** (`[DEMO: Café]`),
+  applied once inside `buildContactMessage` so the contact form, the "Message us"
+  links and any future booking/ordering all inherit it. The tag is demo-only and is
+  removed (with the ribbon) in a real clone.
+- The **sample-ribbon** link is the exception: it calls `buildWebsiteEnquiry`,
+  which is **untagged** and names the demo — it is an owner asking the studio for a
+  website ("Hi Zuvo Web Studio Express, I'd like a website like the `<name>` demo
+  for my shop."), not a site visitor. The demo name comes from `site.name`.
+
 ### Topics
 
 | Key        | Label         | Intent                       |
@@ -152,7 +163,8 @@ strip **above the header on every page** when `site.showDemoRibbon` is true:
 
 - It is an honesty/rights signal (licensed stock imagery, invented brand) and must
   not be removed from the demo (rule §3.11).
-- The "Message us" link opens the WhatsApp enquiry.
+- The "Message us" link opens the untagged **website enquiry** naming the demo
+  (`buildWebsiteEnquiry`) — see §5.
 - A clone sets `showDemoRibbon: false` (and may delete the component).
 
 ## 8. Verification (smoke test)

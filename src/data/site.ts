@@ -113,6 +113,11 @@ export const site = {
   indexable: false,
   /** Demo-only "sample website" ribbon above the header. */
   showDemoRibbon: true,
+  /**
+   * Demo-only. Prefixes every visitor-facing WhatsApp message so the studio can
+   * tell demo enquiries apart (see `src/lib/contact.ts`). Removed in a real clone.
+   */
+  demoTag: "[DEMO: Café]",
   siteUrl: "https://demo-cafe.zuvo.lk",
   currency: { code: "LKR", symbol: "Rs." },
   priceRange: "Rs. 450–2,200",

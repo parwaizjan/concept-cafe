@@ -1,7 +1,7 @@
 ---
 import { site, type Locale } from "../data/site";
 import { buildWhatsAppUrl } from "../lib/whatsapp";
-import { buildContactMessage } from "../lib/contact";
+import { buildWebsiteEnquiry } from "../lib/contact";
 import { useTranslations } from "../i18n/utils";
 import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
 
@@ -12,8 +12,9 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-// A generic enquiry so the demo ribbon always has a working WhatsApp link.
-const href = buildWhatsAppUrl(buildContactMessage({ topic: "general" }, t));
+// The ribbon's WhatsApp link is an owner website enquiry — untagged, unlike the
+// visitor CTAs, which are prefixed with the demo tag in `lib/contact.ts`.
+const href = buildWhatsAppUrl(buildWebsiteEnquiry(t));
 ---
 
 {
