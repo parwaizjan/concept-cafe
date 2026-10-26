@@ -33,9 +33,9 @@ const en = {
   "common.language": "Language",
   "common.close": "Close",
 
-  "ribbon.text": "Sample website — a demo by Zuvo Web Studio Express",
+  "ribbon.text": "Sample website — a demo by Zuvo Web Studio",
   "ribbon.enquiry":
-    "Hi Zuvo Web Studio Express, I'd like a website like the {name} demo for my shop.",
+    "Hi Zuvo Web Studio, I'd like a website like the {name} demo for my shop.",
 
   "hero.eyebrow": "Specialty coffee · Colombo 05",
   "hero.cta": "View the menu",
